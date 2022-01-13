@@ -6,12 +6,15 @@ import InputTodo from './components/InputTodo'
 
 import ListTodos from './components/ListTodos'
 
+import ShowTodos from './components/ShowTodos'
+
 function App() {
   return (
     <Fragment>
       <div className="container">
         <InputTodo />
-        <ListTodos />
+        
+        <ShowTodos /> 
       </div>
     </Fragment>
   );

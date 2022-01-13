@@ -11,7 +11,7 @@ app.use(cors());
 //get all todos
 app.get("/todos", async(req,res) => {
     try {
-        const result = await pool.query("SELECT * FROM todo")
+        const result = await pool.query("SELECT * FROM todo ORDER BY completed_on DESC")
         res.json(result.rows);
         
     } catch (err) {
@@ -72,8 +72,16 @@ app.delete("/todos/:id", async(req,res) => {
 app.put("/todos/:id", async(req,res) => {
     try {
         const {id} = req.params;
-        const {message} = req.body;
-        const result = await pool.query("UPDATE todo set message=$1 WHERE todo_id = $2",[message,id]);
+        console.log(req.body);
+        const {message, status} = req.body;
+        let completed_on = " ";
+        if(status == true){
+            completed_on = " ,completed_on=(extract(epoch from now() at time zone 'utc')) "
+        }
+        else{
+            completed_on = " ,completed_on=null "
+        }
+        const result = await pool.query("UPDATE todo set message=$1, status=$3" + completed_on + "WHERE todo_id = $2",[message,id,status]);
         res.json("todo was updated successfully");
         
         
