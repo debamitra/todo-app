@@ -1,22 +1,14 @@
 
 import './App.css';
-import {Fragment} from 'react';
+import { Fragment } from 'react';
 
 import InputTodo from './components/InputTodo'
-
-import ListTodos from './components/ListTodos'
-
 import ShowTodos from './components/ShowTodos'
+import Home from './components/Home'
 
 function App() {
   return (
-    <Fragment>
-      <div className="container">
-        <InputTodo />
-        
-        <ShowTodos /> 
-      </div>
-    </Fragment>
+    <Home/>
   );
 }
 

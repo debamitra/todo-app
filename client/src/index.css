@@ -12,3 +12,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.todo-container{
+  padding:0;
+
+}
+
+.delete-icon-button{
+  display: inline-flex; /* keep the inline nature of buttons */
+    align-items: flex-start; /* this is default */
+
+}
