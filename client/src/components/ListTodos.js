@@ -10,8 +10,10 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
 
     const deleteTodo = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/todos/${id}`, {
-                method: "DELETE"
+            const response = await fetch(`http://localhost:5000/todoboard/todos/${id}`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" ,jwt_token: localStorage.token }
+                
             });
             setTodos(todos.filter(todo => todo.todo_id !== id));
 
@@ -27,9 +29,10 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
 
         try {
             const body = { message, status };
-            const response = await fetch(`http://localhost:5000/todos/${id}`, {
+            const response = await fetch(`http://localhost:5000/todoboard/todos/${id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",
+                    jwt_token: localStorage.token },
                 body: JSON.stringify(body)
 
             })

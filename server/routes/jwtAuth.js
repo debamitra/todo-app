@@ -49,6 +49,7 @@ router.post('/register', async (req, res) => {
 
 router.post("/login", async(req,res)=> {
     const {email,password} = req.body;
+    console.log("/login")
     try {
         //check if user existsSELECT * FROM users WHERE user_email = $1
         const user = await pool.query("SELECT * from users WHERE user_email = $1",[email])
@@ -58,7 +59,7 @@ router.post("/login", async(req,res)=> {
 
         }
 
-        const validPassword = bcrypt.compare(password, user.rows[0].user_password )
+        const validPassword = await bcrypt.compare(password, user.rows[0].user_password )
 
         //check if encrypted password matches
         if(!validPassword){
@@ -79,7 +80,7 @@ router.post("/login", async(req,res)=> {
 });
 
 
-router.post('/verify', authorize ,(req,res)=> {
+router.get('/verify', authorize ,(req,res)=> {
    try {
     res.json(true)
        

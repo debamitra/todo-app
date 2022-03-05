@@ -13,8 +13,13 @@ router.get("/todos", authorize,async(req,res) => {
     console.log(user_id)
     try {
         const result = await pool.query("SELECT * FROM todo WHERE user_id = $1 ORDER BY completed_on DESC",[user_id])
-        res.json(result.rows);
-        console.log(result.rows)
+        const users = await pool.query("SELECT user_name FROM users WHERE user_id = $1",[user_id])
+        resp_object = {
+            user_name : users.rows[0],
+            todos : result.rows
+        }
+        res.json(resp_object);
+        console.log(resp_object)
 
         
     } catch (err) {
@@ -26,7 +31,7 @@ router.get("/todos", authorize,async(req,res) => {
 
 
 //get one todo
-router.get("/todos/:id", authorize,async(req,res) => {
+router.get("/todos/:id", authorize, async(req,res) => {
     const user_id = req.user.id;
     try {
         const {id} = req.params;

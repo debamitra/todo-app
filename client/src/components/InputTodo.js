@@ -9,9 +9,9 @@ const InputTodo = () => {
         e.preventDefault();
         const body = { message };
         try {
-            const response = await fetch("http://localhost:5000/todos",{
+            const response = await fetch("http://localhost:5000/todoboard/todos",{
                 method:"POST",
-                headers: {"Content-type": "application/json"},
+                headers: {"Content-type": "application/json",jwt_token: localStorage.token},
                 body: JSON.stringify(body)
             });
             window.location = "/";
@@ -27,7 +27,8 @@ const InputTodo = () => {
 
     return (
         <Fragment>
-            <h1 className="text-center mt-5" >Deb's TO-DO List</h1>
+            {//<h1 className="text-center mt-5" >Deb's TO-DO List</h1>
+            }
             <form className="d-flex mt-5" onSubmit={insertTodo}>
                 <input type="text" className="form-control" placeholder="enter a to-do..." onChange={e => setMessage(e.target.value)} value={message}/>
                 <button className="btn btn-success" >Add</button>

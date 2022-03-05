@@ -7,12 +7,20 @@ import ListTodos from "./ListTodos";
 
 const ShowTodos = () => {
     const [todos , setTodos] = useState([]);
+    
+   
 
     const getTodos = async() => {
         try {
-            const response = await fetch("http://localhost:5000/todos");
+            const response = await fetch("http://localhost:5000/todoboard/todos",{
+                headers: { "Content-Type": "application/json" ,jwt_token: localStorage.token }
+            }
+
+            );
             const jsonData = await response.json();
-            setTodos(jsonData);
+            setTodos(jsonData.todos);
+           
+            
 
             
         } catch (error) {
@@ -30,8 +38,9 @@ const ShowTodos = () => {
     
     
     return (
-        
+            
            <Fragment>
+               
                <ListTodos todos={todos} setTodos={setTodos}  isPast={false} listHeader={"Today"}/>
                <ListTodos todos={todos} setTodos={setTodos}  isPast={true} listHeader={"Previous"}/>
            </Fragment>
