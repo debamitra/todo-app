@@ -16,7 +16,7 @@ const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.static(buildPath));
 
 
-app.get(['/login', '/dashboard', '/register'], (req, res) => {
+app.get(['/','/login', '/dashboard', '/register'], (req, res) => {
     //console.log("path esolve",path.resolve(__dirname, '../build', 'index.html'));                  
     res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
   });

@@ -27,7 +27,7 @@
     "build": "react-scripts build && (npm install)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-server": "node index.js",
+    "start-server": "cd server && node index.js",
     "start": "npm run start-server"
   },
   "author": "",
