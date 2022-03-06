@@ -19,6 +19,9 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "v12.18.0"
+  },
   "scripts": {
     "start-client": "react-scripts start",
     "build": "react-scripts build && (npm install)",
