@@ -8,7 +8,7 @@ const EditTodo = ({ todo }) => {
         e.preventDefault();
         try {
             const body = { message };
-            const response = await fetch(`http://localhost:5000/todoboard/todos/${todo.todo_id}`, {
+            const response = await fetch(`todoboard/todos/${todo.todo_id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" ,jwt_token: localStorage.token },
                 body: JSON.stringify(body)
