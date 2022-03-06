@@ -35,13 +35,14 @@ function App() {
 
       const parseRes = await res.json();
 
-      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      parseRes === true ?  setIsAuthenticated(true) : setIsAuthenticated(false);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
+    console.log("App.js useeffect")
     checkAuthenticated();
   }, []);
 
@@ -50,6 +51,8 @@ function App() {
   const setAuth = boolean => {
     setIsAuthenticated(boolean);
   };
+  console.log("App.js inside component")
+  checkAuthenticated();
 
   return (
     <Fragment>
@@ -59,7 +62,7 @@ function App() {
       <Header isAuthenticated={isAuthenticated}/>
       
       <Routes>
-      <Route exact path="" element={isAuthenticated ? <Dashboard setAuth={setAuth}/>: <Navigate to="/login" /> }/>
+        <Route exact path="" element={isAuthenticated ? <Dashboard setAuth={setAuth}/>: <Navigate to="/login" /> }/>
         <Route exact path="login" element={ !isAuthenticated ? <Login setAuth={setAuth}/>: <Navigate to="/dashboard" />}/>
         <Route exact path="register" element={ !isAuthenticated ? <Register setAuth={setAuth}/>:<Navigate to="/dashboard" /> }/>
         <Route exact path="dashboard" element={isAuthenticated ? <Dashboard setAuth={setAuth}/>: <Navigate to="/login" /> }/>
