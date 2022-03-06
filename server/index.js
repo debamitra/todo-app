@@ -36,5 +36,5 @@ app.use("/todoboard",require("./routes/todoBoard"))
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, ()=> {
-    console.log("server has started on port 4000");
+    console.log("server has started on port ",PORT);
 });

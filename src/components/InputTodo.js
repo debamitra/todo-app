@@ -14,6 +14,7 @@ const InputTodo = () => {
                 headers: {"Content-type": "application/json",jwt_token: localStorage.token},
                 body: JSON.stringify(body)
             });
+           
             window.location = "/dashboard";
             
         } catch (error) {

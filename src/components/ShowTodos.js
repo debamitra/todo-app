@@ -6,7 +6,7 @@ import React , {useState, useEffect , Fragment} from "react";
 import ListTodos from "./ListTodos";
 
 const ShowTodos = () => {
-    const [todos , setTodos] = useState([]);
+    const [todos , setTodos] = useState(null);
     
    
 
@@ -34,7 +34,12 @@ const ShowTodos = () => {
         getTodos();
     },[]);
 
+    if (todos == null){
+        return(
+            <p class="my-5 text-center">..Loading</p>
+          )
 
+    }
     if (todos.length == 0){
         return(
           <p class="my-5 text-center">No to-dos to show yet.</p>
