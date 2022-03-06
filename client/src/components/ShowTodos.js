@@ -35,11 +35,16 @@ const ShowTodos = () => {
     },[]);
 
 
-    
+    if (todos.length == 0){
+        return(
+          <p class="my-5 text-center">No to-dos to show yet.</p>
+        )
+    }
     
     return (
             
            <Fragment>
+               
                
                <ListTodos todos={todos} setTodos={setTodos}  isPast={false} listHeader={"Today"}/>
                <ListTodos todos={todos} setTodos={setTodos}  isPast={true} listHeader={"Previous"}/>

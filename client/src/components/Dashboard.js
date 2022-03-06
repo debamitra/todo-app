@@ -4,6 +4,7 @@ import Home  from "./Home"
 
 const Dashboard = ({ setAuth }) => {
   const [name, setName] = useState("");
+  const [emptytodos, setEmptytodos] = useState(false)
 
   const getProfile = async () => {
     try {
@@ -16,6 +17,9 @@ const Dashboard = ({ setAuth }) => {
       console.log("user name")
       console.log(parseData.user_name)
       setName(parseData.user_name.user_name);
+      if((parseData.todos).length == 0){
+        setEmptytodos(true)
+      }
     } catch (err) {
       console.error(err.message);
     }
@@ -40,9 +44,8 @@ const Dashboard = ({ setAuth }) => {
     <div className="container cont-pad">
       <h1 className="mt-5"> {name}'s TO-DO List</h1>
      
-      
-      
-      <Home />
+        
+      <Home emptytodos={emptytodos} />
       {/*
       <button onClick={e => logout(e)} className="btn btn-primary">
         Logout

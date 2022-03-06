@@ -83,8 +83,7 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
                             <tr key={item.todo_id}>
 
                                 <td style={{ width: "10%" }}><input type="checkbox" checked={item.status ? 'checked' : ''} id={`status${item.todo_id}`} onChange={() => completeTodo(item.todo_id, item.message)} /></td>
-                                <td style={{ width: "60%" }}><div id={`todotext${item.todo_id}`} style={item.status ? { textDecoration: "line-through", color: "lightgrey" } : { textDecoration: "initial" }} >{item.message}{item.status == true &&
-                                    <span>{"  -  "}{new Date((item.completed_on * 1000)).toLocaleDateString()} </span>}</div></td>
+                                <td style={{ width: "60%" }}><div id={`todotext${item.todo_id}`} style={item.status ? { textDecoration: "line-through", color: "lightgrey" } : { textDecoration: "initial" }} >{item.message}</div></td>
 
                                 <td className="todo-container" style={{ width: "10%" }} style={item.status ? { color: "lightgrey" } : { textDecoration: "initial" }}>{item.completed_on == null ? '' : new Date((item.completed_on * 1000)).toLocaleDateString()} </td>
 

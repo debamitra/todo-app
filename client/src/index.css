@@ -102,3 +102,29 @@ body, html, .App, #root, .auth-wrapper {
   padding-top: 40px;
 
 }
+
+.empty-todo{
+  display:inline-block;
+  margin:auto;
+  
+  
+  text-align:"center"
+
+}
+/*
+.btn-success{
+  background-color:#3DDED1;
+  color:black;
+}
+
+.btn-success:hover{
+  background-color:#00C0B2;
+  color:white;
+}
+
+.btn-success:focus{
+  background-color:#00C0B2;
+  color:white;
+}
+*/
+
