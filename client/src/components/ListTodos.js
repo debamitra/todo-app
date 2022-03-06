@@ -36,7 +36,7 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
                 body: JSON.stringify(body)
 
             })
-            window.location = '/';
+            window.location = '/dashboard';
 
         } catch (error) {
             console.log(error.message)
