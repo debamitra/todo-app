@@ -42,7 +42,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("App.js useeffect")
     checkAuthenticated();
   }, []);
 

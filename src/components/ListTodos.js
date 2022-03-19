@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { ReactComponent as DeleteButton } from '../images/delete_button.svg';
 
 import EditTodo from './EditTodo'
+import Clip from '../images/clip.png';
 
 
 const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
@@ -12,8 +13,8 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
         try {
             const response = await fetch(`/todoboard/todos/${id}`, {
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" ,jwt_token: localStorage.token }
-                
+                headers: { "Content-Type": "application/json", jwt_token: localStorage.token }
+
             });
             setTodos(todos.filter(todo => todo.todo_id !== id));
 
@@ -31,8 +32,10 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
             const body = { message, status };
             const response = await fetch(`/todoboard/todos/${id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json",
-                    jwt_token: localStorage.token },
+                headers: {
+                    "Content-Type": "application/json",
+                    jwt_token: localStorage.token
+                },
                 body: JSON.stringify(body)
 
             })
@@ -64,10 +67,12 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
 
     return (
         <Fragment>
-            <table className="table table-borderless mt-5 text-left">
+
+            <table className="table table-borderless mt-5 text-left custom-stuff">
 
                 <thead>
                     <tr>
+                        
                         <th>{listHeader}</th>
 
                     </tr>
