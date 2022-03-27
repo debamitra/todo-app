@@ -5,8 +5,12 @@ import EditTodo from './EditTodo'
 import Clip from '../images/clip.png';
 
 
-const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
-    console.log(todos);
+const ListTodos = ({  isPast, listHeader, listnumber, userlisttodos,setUserlisttodos }) => {
+    //const [todos, setTodos] = useState([]);
+    console.log("listtodos",listnumber);
+    console.log("listtodos",userlisttodos.filter(todo => (todo.user_list_id == listnumber)));
+    console.log("listtodos",listnumber);
+    
 
 
     const deleteTodo = async (id) => {
@@ -16,7 +20,9 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
                 headers: { "Content-Type": "application/json", jwt_token: localStorage.token }
 
             });
-            setTodos(todos.filter(todo => todo.todo_id !== id));
+            // setTodos(todos.filter(todo => todo.todo_id !== id));
+            setUserlisttodos(userlisttodos.filter(todo => todo.todo_id !== id));
+
 
         } catch (error) {
             console.log(error.message)
@@ -64,6 +70,10 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
         }
     }
 
+    useEffect(() => {
+        //filter(todo => (todo.user_list_id == listnumber)))
+    }, [])
+
 
     return (
         <Fragment>
@@ -72,7 +82,7 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
 
                 <thead>
                     <tr>
-                        
+
                         <th>{listHeader}</th>
 
                     </tr>
@@ -80,9 +90,8 @@ const ListTodos = ({ todos, setTodos, isPast, listHeader }) => {
 
                 <tbody>
                     {
-
-
-                        todos.filter(item => {
+                        
+                        userlisttodos.filter(todo => (todo.user_list_id == listnumber)).filter(item => {
                             return item.status == isPast;
                         }).map((item) => (
                             <tr key={item.todo_id}>

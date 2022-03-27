@@ -34,10 +34,24 @@ const Register = ({ setAuth }) => {
                 }
             );
 
+
             const parseRes = await response.json();
+
+            
 
             if (parseRes.token) {
                 localStorage.setItem("token", parseRes.token);
+                const body1 = { "user_list_id": 1, "list_name": "Default" }
+
+                const response1 = await fetch(
+                    "/todoboard/lists",
+                    {
+                        method: "POST",
+                        headers: {"Content-type": "application/json",jwt_token: localStorage.token},
+                        body: JSON.stringify(body1)
+                    }
+                );
+                
                 setAuth(true);
                 toast.success("Register Successfully");
             } else {
