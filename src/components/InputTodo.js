@@ -51,8 +51,6 @@ const InputTodo = ({ listnumber }) => {
 
     return (
         <Fragment>
-            <h5 className="text-center mt-5" >My [{listnumber}] list</h5>
-
             <form className="d-flex mt-5" onSubmit={insertTodo}>
                 <input type="text" className="form-control" placeholder="enter a to-do..." onChange={e => setMessage(e.target.value)} value={message} />
                 <button className="btn btn-success" >Add</button>

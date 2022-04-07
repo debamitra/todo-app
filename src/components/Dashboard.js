@@ -63,12 +63,11 @@ const Dashboard = ({ setAuth }) => {
 
   useEffect(() => {
     getProfile();
-    console.log("does list no get updated and rerender Dashboard component here")
   }, []);
 
   return (
     <div className="container cont-pad">
-      <h5 className="mt-5"> Welcome {name}, {listnumber}</h5>
+      <h5 className="mt-5"> Welcome {name}</h5>
       <div class="container px-4">
         <div class="row gx-5">
           <div class="col" >

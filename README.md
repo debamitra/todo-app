@@ -11,15 +11,22 @@ TABLE todo
 - user_list_id
 
 
+
+
 TABLE user
 - user_id
 - user_name
 - user_email
 - user_password
 
+
+
+
 TABLE list
-list_id
-list_name
+- list_id
+- list_name
+- user_id
+- user_list_id
 
 
 
