@@ -28,6 +28,19 @@ toast.configure();
 function App() {
   const checkAuthenticated = async () => {
     try {
+      console.log("in checkauth")
+      console.log(localStorage.token)
+      const isLoggedIn = localStorage.getItem('token');
+            if (isLoggedIn == null){
+              const query = new URLSearchParams(window.location.search);
+              const token=query.get('jwt')
+              console.log(token)
+              if(token){
+                localStorage.setItem('token',token);
+                
+              }
+
+            }
       const res = await fetch("/auth/verify", {
         method: "GET",
         headers: { jwt_token: localStorage.token }
@@ -44,6 +57,8 @@ function App() {
   useEffect(() => {
     checkAuthenticated();
   }, []);
+
+
 
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
