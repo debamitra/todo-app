@@ -1,5 +1,6 @@
 
 import './App.css';
+import jwtDecode from 'jwt-decode';
 
 import Home from './components/Home';
 import {
@@ -12,6 +13,8 @@ import {
  import { toast } from "react-toastify";
  import Header from "./components/Header"
  import Logout from "./components/Logout"
+ import LandingPage from './components/LandingPage';
+ import Sidebar from './components/Sidebar';
 
 
  //components
@@ -31,7 +34,12 @@ function App() {
       console.log("in checkauth")
       console.log(localStorage.token)
       const isLoggedIn = localStorage.getItem('token');
-            if (isLoggedIn == null){
+      let decodedToken = null
+      if (isLoggedIn){
+        decodedToken = jwtDecode(isLoggedIn);
+      }
+      if (isLoggedIn == null || decodedToken.exp - (Date.now() / 1000) <= 0 )
+          {
               const query = new URLSearchParams(window.location.search);
               const token=query.get('jwt')
               console.log(token)
@@ -53,10 +61,25 @@ function App() {
       console.log(err);
     }
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const timeUntilExpiration = decodedToken.exp - (Date.now() / 1000);
+      setTimeout(() => {
+        localStorage.removeItem('token');
+        
+      }, timeUntilExpiration * 1000);
+    }
+  }, []);
   useEffect(() => {
     checkAuthenticated();
   }, []);
+
+
+
+
+ 
 
 
 
@@ -73,13 +96,16 @@ function App() {
       
       <Header isAuthenticated={isAuthenticated}/>
       
+      
       <Routes>
+        <Route exact path="landing" element={<LandingPage/>} />
         <Route exact path="" element={isAuthenticated == null ? <p>..Loading</p> :isAuthenticated ? <Dashboard setAuth={setAuth}/>: <Navigate to="/login" /> }/>
         <Route exact path="login" element={ isAuthenticated == null ? <p>..Loading</p> :!isAuthenticated ? <Login setAuth={setAuth}/>: <Navigate to="/dashboard" />}/>
         <Route exact path="register" element={ !isAuthenticated ? <Register setAuth={setAuth}/>:<Navigate to="/dashboard" /> }/>
         <Route exact path="dashboard" element={isAuthenticated == null ? <p>..Loading</p> :isAuthenticated ? <Dashboard setAuth={setAuth}/>: <Navigate to="/login" /> }/>
         <Route exact path="logout" element={<Logout setAuth={setAuth}/>}/>
       </Routes>
+      
       
       
     </Router>

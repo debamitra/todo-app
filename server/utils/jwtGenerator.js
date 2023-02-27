@@ -10,7 +10,9 @@ function jwtGenerator (user_id) {
         }
     };
 
-    return jwt.sign(payload, 'secret', { expiresIn: "1hr" });
+    const x = jwt.sign(payload, 'secret', { expiresIn: "1hr" });
+    console.log(x)
+    return x
 }
 
 module.exports = jwtGenerator;

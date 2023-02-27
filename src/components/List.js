@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { ReactComponent as AddButton } from '../images/add-duotone.svg';
 
 const List = ({ setListnumber, userlisttodos, setUserlisttodos }) => {
 
@@ -72,12 +73,14 @@ const List = ({ setListnumber, userlisttodos, setUserlisttodos }) => {
     return (
         <div class="sidenav">
             <ul>
+           
                 {
                     lists.map(list =>
-                        list.user_list_id == 1 ? <li style={{ listStyleType: "none" }}><a href={`#${list.user_list_id}`} onClick={(e) => getListNumber(e.target.getAttribute('href'))}>{list.list_name}</a></li>
+                        list.user_list_id == 1 ? <li className='list-item' style={{ listStyleType: "none" }}><a href={`#${list.user_list_id}`} onClick={(e) => getListNumber(e.target.getAttribute('href'))}>{list.list_name}</a></li>
                             : <li style={{ listStyleType: "none" }}><a href={`#${list.user_list_id}`} onClick={(e) => getListNumber(e.target.getAttribute('href'))}>{list.list_name}</a></li>
                     )
                 }
+                 <li className='place-holder list-item ' style={{ listStyleType: "none" }}><input className='place-holder  list-item' type="text" maxlength="15" size="10" placeholder="new list.." onChange={e => setNewlistname(e.target.value)} value={newlistname} /><button className="create-new-list" onClick={e => newList(e)}><AddButton/></button></li>
             </ul>
 
             {
@@ -90,14 +93,15 @@ const List = ({ setListnumber, userlisttodos, setUserlisttodos }) => {
 
             <br></br>
 
-            <form className="d-flex flex-column col-xs-2" onSubmit={newList}>
+           {/*} <form className="d-flex flex-column col-xs-2" onSubmit={newList}>
 
-                <input type="text" className="form-control" placeholder="create new list..." onChange={e => setNewlistname(e.target.value)} value={newlistname} />
+                <input type="text"  placeholder="create new list..." onChange={e => setNewlistname(e.target.value)} value={newlistname} />
 
-                <div className="list-create">
-                    <button className="btn btn-success" onClick={e => newList(e)}>Create new list</button>
-                </div>
-            </form>
+                
+        <button className="create-new-list" onClick={e => newList(e)}><AddButton/></button>*/}
+                
+        
+            
 
 
         </div>

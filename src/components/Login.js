@@ -74,12 +74,21 @@ const Login = ({setAuth}) => {
         <div className="auth-wrapper">
         <div className="auth-inner">
            <h1 className="my-5 text-center">Login</h1>
-           <button onClick={handleLogin}>Log In With Google</button>
+           <div className="or">
+      <button type='button' className='login-with-google-btn' onClick={handleLogin}>Sign in with Google</button>
+      </div>
+        <div className="or">
+        <hr className="bar"/>
+        <span className="or-text">OR</span>
+        <hr className="bar"/>
+        </div>
+        
       <form onSubmit={onSubmitForm}>
         <input
           type="text"
           name="email"
           value={email}
+          placeholder="name"
           onChange={e => onChange(e)}
           className="form-control my-3"
         />
@@ -87,10 +96,11 @@ const Login = ({setAuth}) => {
           type="password"
           name="password"
           value={password}
+          placeholder="password"
           onChange={e => onChange(e)}
           className="form-control my-3"
         />
-        <button class="btn btn-success btn-block">Submit</button>
+        <button class="btn-block cta-button">Login</button>
       </form>
       <Link to="/register">Sign Up</Link>
       </div>

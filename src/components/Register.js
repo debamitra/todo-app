@@ -93,7 +93,7 @@ const Register = ({ setAuth }) => {
                     onChange={e => onChange(e)}
                     className="form-control my-3"
                 />
-                <button className="btn btn-success btn-block">Submit</button>
+                <button className="btn-block cta-button">SignUp</button>  
 
             </form>
             <Link to="/login">Login</Link>

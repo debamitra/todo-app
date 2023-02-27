@@ -177,6 +177,7 @@ router.get('/google/login', (req, res) => {
         res.status(500).send("Server Error")
 
       }
+      console.log("here1")
 
       console.log(token)
     
