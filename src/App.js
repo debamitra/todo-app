@@ -40,6 +40,7 @@ function App() {
       }
       if (isLoggedIn == null || decodedToken.exp - (Date.now() / 1000) <= 0 )
           {
+            console.log(window.location.search)
               const query = new URLSearchParams(window.location.search);
               const token=query.get('jwt')
               console.log(token)

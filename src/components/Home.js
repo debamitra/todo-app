@@ -12,6 +12,7 @@ function Home({ emptytodos, listnumber, setUserlisttodos, userlisttodos }) {
   return (
     <Fragment>
       <div className="container">
+        
         <InputTodo listnumber={listnumber} />
         {
           emptytodos ?
@@ -28,6 +29,7 @@ function Home({ emptytodos, listnumber, setUserlisttodos, userlisttodos }) {
             : <ShowTodos listnumber={listnumber} setUserlisttodos={setUserlisttodos} userlisttodos={userlisttodos} />
 
         }
+        
 
 
       </div>

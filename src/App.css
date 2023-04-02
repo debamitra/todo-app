@@ -13,6 +13,8 @@
   }
 }
 
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -129,4 +131,18 @@
 
 
 
+
+div.ex1{
+  height: 80vh;
+
+  
+  overflow-y: scroll;
+  
+
+}
+
+/* div.ex1:hover {
+ 
+  
+} */
 

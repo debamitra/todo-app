@@ -70,12 +70,12 @@ const Dashboard = ({ setAuth }) => {
       <h5 className="mt-5"> Welcome {name}</h5>
       <div class="container px-4">
         <div class="row gx-5">
-         { /*<div class="col" >
-            <div class="p-3"> <List userlisttodos={userlisttodos} setUserlisttodos={setUserlisttodos} setListnumber={setListnumber}/></div>
+        {/* <div class="col" >
+            <div > <List userlisttodos={userlisttodos} setUserlisttodos={setUserlisttodos} setListnumber={setListnumber}/></div>
 
-  </div>*/}
-
-          <div class="col-6" >
+  </div> */}
+          
+          <div class="col-9 ex1" >
             <div class="p-3 rounded bg-light "> <Home emptytodos={emptytodos} listnumber={listnumber} setUserlisttodos={setUserlisttodos} userlisttodos={userlisttodos}/></div>
 
           </div>

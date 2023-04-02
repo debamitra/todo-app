@@ -3,8 +3,9 @@
 TABLE todo
 - todo_id
 - list_id
-- user_id/created_by
+- user_id
 - message
+- index
 - status
 - completed_on
 - created_on
@@ -13,7 +14,7 @@ TABLE todo
 TABLE list
 - list_id
 - list_name
-- user_id / created_by
+- user_id 
 - created_on
 - is_deleted
 
