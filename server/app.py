@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify, redirect, url_for,current_app
+from flask import Flask, request, jsonify, redirect, url_for,current_app,render_template, send_from_directory
 from flask_cors import CORS
+import os
 import openai
 from flask.cli import run_command
 from flask_sqlalchemy import SQLAlchemy
@@ -18,19 +19,20 @@ import json
 from flask_dance.consumer import oauth_authorized
 from oauthlib.oauth2.rfc6749.errors import TokenExpiredError
 from dotenv import load_dotenv
+from pathlib import Path
 load_dotenv()
 
 # Set up Flask-Dance blueprint
 blueprint = make_google_blueprint(
-    client_id='839413605526-2djlj2kfcrsp5bttqpv9rspsf4jgssv3.apps.googleusercontent.com',
-    client_secret='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',
+    client_id= os.environ["CLIENT_ID"],
+    client_secret=os.environ["CLIENT_SECRET"],
     scope=["profile", "email"],
     redirect_url="/google/authorized"
 )
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, root_path=str(Path(__file__).parent), static_folder="static/static", template_folder="static") 
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
@@ -127,7 +129,18 @@ class Todo(db.Model):
 
 
 
-       
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    print("deba-path")
+    print(path)
+    if path != "" and os.path.exists("/static/" + path):
+        return send_from_directory('static', path)
+    else:
+        return send_from_directory('static', 'index.html')
+
+
         
 
 @app.route("/api/signin")
@@ -191,11 +204,11 @@ def authorized():
     name = resp.json()["name"]
     user = User(email)
     login_user(user)
-    redirect_url = "http://localhost"
+    redirect_url = "http://localhost:5000"
     access_token = google.token["id_token"]
     print(access_token)
     #query_params = {"access_token": access_token}
-    redirect_url_with_query = "http://localhost?token=" + access_token
+    redirect_url_with_query = "http://localhost:5000?token=" + access_token
     print(redirect_url_with_query)
     print(current_user.is_authenticated)
     if UserDetail.query.filter_by(email=email).first() == None:
@@ -220,7 +233,7 @@ def return_todos_list():
 
 
 def breakdown_todos(inputtext):
-    openai.api_key = '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'
+    openai.api_key = os.environ["OPENAI_KEY"]
     #inputtext = "read this blog and build a business using the ideas in it https://www.ycombinator.com/blog."
     print("hello")
     response = openai.Completion.create(

@@ -21,6 +21,7 @@ const Logout = ({setAuth}) => {
 
   useEffect(() => {
     logout();
+    getlogoutAPI();
   }, []);
 
   return (
@@ -29,5 +30,15 @@ const Logout = ({setAuth}) => {
   )
     
 };
+
+async function getlogoutAPI() {
+  try {
+    const response = await api.get('/api/logout');
+    setTodos(response.data)
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data);
+  }
+}
 
 export default Logout;

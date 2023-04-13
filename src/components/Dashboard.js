@@ -468,12 +468,13 @@ const Dashboard = ({ setAuth }) => {
                 </svg>
 
                 {showDropdown && (
-                  <div className="dropdown">
+                  {/*<div className="dropdown">
                     <div className="dropdown-item" onClick={() => handleSmartBreakdownClick(index, todo.text, todo.id)}>
                       Smart breakdown
                     </div>
 
-                  </div>
+                </div>*/
+              }
                 )}
               </div>
 

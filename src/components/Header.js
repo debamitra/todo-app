@@ -3,8 +3,11 @@ import "./Header.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 import logo from './icons/logo1.png';
+import { Link } from 'react-router-dom';
 
 function Header() {
+
+ 
 
     const currentDate = new Date().toLocaleString();
   return (
@@ -26,7 +29,10 @@ function Header() {
   
     
     <div className="header__icons-container">
-    <div className="header__date-time">{currentDate}</div>
+    {/*<div className="header__date-time">{currentDate}</div>*/}
+    <Link to="/logout">
+      <button className="add-todo">Logout</button>
+    </Link>
       <div className="header__notification-icon">
         
       </div>
