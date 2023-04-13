@@ -1,19 +1,42 @@
-
 import React from "react";
-import {  Link } from "react-router-dom";
-import SubHeader from "./SubHeader"
+import "./Header.css";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBell, faUser } from "@fortawesome/free-solid-svg-icons";
+import logo from './icons/logo1.png';
 
-const Header = ({isAuthenticated}) => {
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-        <div className="container">
-          <Link className="navbar-brand" to={"/dashboard"}>todo.io</Link>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <SubHeader isAuthenticated={isAuthenticated}/>
-          </div>
-        </div>
-      </nav>
-    )
+function Header() {
+
+    const currentDate = new Date().toLocaleString();
+  return (
+    <header className="header">
+
+    <div className="header__container">
+    <div className="header__logo">
+      <img src={logo} alt="BRAINYDO Logo" />
+      <h1 className="header__appname">BrainyDo</h1>
+      
+      
+    </div>
+  
+    <div className="header__description">
+      A mindfulness and productivity app powered by AI
+    </div>
+  </div>
+
+  
+    
+    <div className="header__icons-container">
+    <div className="header__date-time">{currentDate}</div>
+      <div className="header__notification-icon">
+        
+      </div>
+      <div className="header__profile-icon">
+        
+      </div>
+    </div>
+    </header>
+  )
+   
 }
 
 export default Header;
